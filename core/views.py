@@ -1,15 +1,18 @@
 from django.urls import reverse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 from .models import Client
 from .forms import ClientForm
 
 # Create your views here.
 
+@login_required(login_url='account_login')
 def index(request):
     return render(request, 'index.html')
 
+@login_required(login_url='account_login')
 def create_client(request):
     form = ClientForm
 
@@ -20,6 +23,7 @@ def create_client(request):
             return HttpResponseRedirect(reverse('core:index'))
     return render(request, 'core/create_client.html', {'form': form})
 
+@login_required(login_url='account_login')
 def update_client(request, pk):
     client = Client.objects.get(pk=pk)
     form = ClientForm(instance=client)
@@ -31,6 +35,7 @@ def update_client(request, pk):
             return HttpResponseRedirect(reverse('core:index'))
     return render(request, 'core/update_client.html', {'form': form})
 
+@login_required(login_url='account_login')
 def delete_client(request, pk):
     client = Client.objects.get(pk=pk)
 
