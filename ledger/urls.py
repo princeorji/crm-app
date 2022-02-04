@@ -4,5 +4,5 @@ from . import views
 app_name = 'ledger'
 
 urlpatterns = [
-    path('ledger/', views.AccountList, name="ledger")
+    path('ledger/', views.account_list, name="ledger")
 ]
