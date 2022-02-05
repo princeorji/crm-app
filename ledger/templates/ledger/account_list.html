@@ -1,9 +1,13 @@
 <h3>Account List</h3>
 
+<form action="{% url 'ledger:ledger' %}" method="get">
+    <input type="text" name="q" placeholder="search...">
+</form>
+
 <ul>
     {% for ledger in ledgers %}
         <li>
-            <a href=""><h4>{{ledger.name}}</h4></a>
+            <a href="{{ledger.get_absolute_url}}"><h4>{{ledger.name}}</h4></a>
             <span>created on {{ledger.created_on}}</span>
         </li>
     {% endfor %}
