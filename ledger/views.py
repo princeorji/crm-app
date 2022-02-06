@@ -29,12 +29,11 @@ def account_detail(request, pk):
     ledger = Ledger.objects.get(pk=pk)
     return render(request, 'ledger/account_detail.html', {'ledger': ledger})
 
-def new_account(request, pk):
-    ledger = Ledger.objects.get(pk=pk)
-    form = AccountForm(instance=ledger)
+def add_account(request):
+    form = AccountForm
 
     if request.method == 'POST':
-        form = AccountForm(request.POST, instance=ledger)
+        form = AccountForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('ledger:account_list'))
