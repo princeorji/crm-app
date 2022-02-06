@@ -1,9 +1,11 @@
+from django.urls import reverse
 from django.db.models import Q
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 from .models import Ledger
+from .forms import AccountForm
 
 # Create your views here.
 
@@ -26,3 +28,15 @@ def account_list(request):
 def account_detail(request, pk):
     ledger = Ledger.objects.get(pk=pk)
     return render(request, 'ledger/account_detail.html', {'ledger': ledger})
+
+def new_account(request, pk):
+    ledger = Ledger.objects.get(pk=pk)
+    form = AccountForm(instance=ledger)
+
+    if request.method == 'POST':
+        form = AccountForm(request.POST, instance=ledger)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('ledger:account_list'))
+    return render(request, 'ledger/new_account.html', {'form': form})
+   

@@ -4,6 +4,7 @@ from . import views
 app_name = 'ledger'
 
 urlpatterns = [
-    path('ledger/', views.account_list, name="ledger"),
-    path('account_detail/<int:pk>/', views.account_detail, name="account-detail")
+    path('account_list/', views.account_list, name="account-list"),
+    path('account_detail/<int:pk>/', views.account_detail, name="account-detail"),
+    path('new_account/', views.new_account, name="new-account"),
 ]
