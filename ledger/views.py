@@ -37,5 +37,5 @@ def add_account(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('ledger:account_list'))
-    return render(request, 'ledger/new_account.html', {'form': form})
+    return render(request, 'ledger/add_account.html', {'form': form})
    

@@ -1,9 +1,13 @@
-<h2>Update Client:</h2>
-<div>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <a href="{{request.META.HTTP_REFERER}}">Back</a>
-        <button type="submit">Update</button>
-    </form>
-</div>
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <h2>Update Client:</h2>
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <a href="{{request.META.HTTP_REFERER}}">Back</a>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+{% endblock %}

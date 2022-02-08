@@ -1,13 +1,17 @@
-<h3>{{ledger.name}}</h3>
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <h3>{{ledger.name}}</h3>
 
-<div>
     <div>
-        <h5>Description</h5>
-        <p>{{ledger.description}}</p>
+        <div>
+            <h5>Description</h5>
+            <p>{{ledger.description}}</p>
+        </div>
+        <div>
+            <p>{{ledger.email}}</p>
+            <p>{{ledger.phone_number}}</p>
+            <p>{{ledger.organisation}}</p>
+        </div>
     </div>
-    <div>
-        <p>{{ledger.email}}</p>
-        <p>{{ledger.phone_number}}</p>
-        <p>{{ledger.organisation}}</p>
-    </div>
-</div>
+{% endblock %}
