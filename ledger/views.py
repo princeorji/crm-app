@@ -3,12 +3,14 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 from .models import Ledger
 from .forms import AccountForm
 
 # Create your views here.
 
+@login_required(login_url='account_login')
 def account_list(request):
     ledgers = Ledger.objects.all().order_by('created_on')
     paginator = Paginator(ledgers, 12)
@@ -25,10 +27,12 @@ def account_list(request):
     }
     return render(request, 'ledger/account_list.html', context)
 
+@login_required(login_url='account_login')
 def account_detail(request, pk):
     ledger = Ledger.objects.get(pk=pk)
     return render(request, 'ledger/account_detail.html', {'ledger': ledger})
 
+@login_required(login_url='account_login')
 def add_account(request):
     form = AccountForm
 
@@ -39,6 +43,7 @@ def add_account(request):
             return HttpResponseRedirect(reverse('ledger:account_list'))
     return render(request, 'ledger/add_account.html', {'form': form})
 
+@login_required(login_url='account_login')
 def edit_account(request, pk):
     ledger = Ledger.objects.get(pk=pk)
     form = AccountForm(instance=ledger)
