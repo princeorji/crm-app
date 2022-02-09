@@ -1,0 +1,12 @@
+<tr>
+    <td>{{ contact.first_name }} {{ contact.last_name }}</td>
+    <td>{{ contact.role }}</td>
+    <td>{{ contact.email }}</td>
+    <td>{{ contact.phone_number }}</td>
+    <td>
+        <a href="{% url 'contacts:edit-contact' contact.pk %}">Edit</a>
+    </td>
+    <td>
+        <a href="{% url 'contacts:delete-contact' contact.pk %}">Delete</a>
+    </td>
+</tr>

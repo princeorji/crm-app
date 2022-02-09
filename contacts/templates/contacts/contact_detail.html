@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Contact Detail{% endblock %}
+{% block content %}
+    <div>
+        <div>
+            <h4>Contact Details</h4>
+            <table>
+                <tbody>
+                    {% include 'contacts/contact_item_view.html' %}
+                </tbody>
+            </table> 
+        </div>
+    </div>
+{% endblock %}

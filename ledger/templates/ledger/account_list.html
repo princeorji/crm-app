@@ -1,7 +1,11 @@
 {% extends 'index.html' %}
 {% load static %}
 {% block content %}
-    <h3>Account List</h3>
+    <h3>Account List
+        <span>
+            <a href="{% url 'ledger:add-account' %}">+ Add new Account</a>
+        </span>
+    </h3>
 
     <form action="{% url 'ledger:account-list' %}" method="get">
         <input type="text" name="q" placeholder="search...">

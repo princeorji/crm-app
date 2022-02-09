@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Ledger
 from .forms import AccountForm
+from contacts.models import Contact
 
 # Create your views here.
 
@@ -30,7 +31,12 @@ def account_list(request):
 @login_required(login_url='account_login')
 def account_detail(request, pk):
     ledger = Ledger.objects.get(pk=pk)
-    return render(request, 'ledger/account_detail.html', {'ledger': ledger})
+    contacts = Contact.objects.filter(ledger=ledger)
+    context = {
+        'ledger': ledger,
+        'contacts': contacts
+    }
+    return render(request, 'ledger/account_detail.html', context)
 
 @login_required(login_url='account_login')
 def add_account(request):
@@ -41,7 +47,7 @@ def add_account(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('ledger:account_list'))
-    return render(request, 'ledger/add_account.html', {'form': form})
+    return render(request, 'ledger/account_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
 def edit_account(request, pk):
@@ -53,5 +59,5 @@ def edit_account(request, pk):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('ledger:account_list'))
-    return render(request, 'ledger/edit_account.html', {'form': form})
+    return render(request, 'ledger/account_cru.html', {'form': form})
    

@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Contact Operation{% endblock %}
+{% block content %}
+    <div>
+        <div>
+            {% include 'contacts/contact_item_view.html' %}
+        </div> 
+    </div>
+{% endblock %}

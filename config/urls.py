@@ -9,5 +9,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('core.urls', namespace='core')),
     path('ledger/', include('ledger.urls', namespace='ledger')),
+    path('contacts/', include('contacts.urls', namespace='contacts')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

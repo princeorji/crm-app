@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'ledger',
+    'contacts',
 
     # Third party apps
     'allauth',

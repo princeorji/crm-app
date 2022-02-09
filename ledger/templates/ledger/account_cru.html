@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Account Operation{% endblock %}
+{% block content %}
+    <div>
+        <div>
+            {% include 'ledger/account_item_view.html' %}
+        </div> 
+    </div>
+{% endblock %}
