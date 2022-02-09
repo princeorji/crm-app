@@ -38,4 +38,15 @@ def add_account(request):
             form.save()
             return HttpResponseRedirect(reverse('ledger:account_list'))
     return render(request, 'ledger/add_account.html', {'form': form})
+
+def edit_account(request, pk):
+    ledger = Ledger.objects.get(pk=pk)
+    form = AccountForm(instance=ledger)
+
+    if request.method == 'POST':
+        form = AccountForm(request.POST, instance=ledger)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('ledger:account_list'))
+    return render(request, 'ledger/edit_account.html', {'form': form})
    
