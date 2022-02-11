@@ -40,8 +40,8 @@ def delete_client(request, pk):
     client = Client.objects.get(pk=pk)
 
     if request.method == 'POST':
-            client.delete()
-            return HttpResponseRedirect(reverse('core:index'))
+        client.delete()
+        return HttpResponseRedirect(reverse('core:index'))
     return render(request, 'core/delete_client.html', {'obj': client})
 
 

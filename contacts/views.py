@@ -36,6 +36,6 @@ def delete_contact(request, pk):
     contact = Contact.objects.get(pk=pk)
 
     if request.method == 'POST':
-            contact.delete()
-            return HttpResponseRedirect(reverse('/success/'))
+        contact.delete()
+        return HttpResponseRedirect(reverse('/success/'))
     return render(request, 'contacts/delete_contact.html', {'obj': contact})

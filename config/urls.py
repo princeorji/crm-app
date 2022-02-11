@@ -10,5 +10,6 @@ urlpatterns = [
     path('', include('core.urls', namespace='core')),
     path('ledger/', include('ledger.urls', namespace='ledger')),
     path('contacts/', include('contacts.urls', namespace='contacts')),
+    path('communications/', include('communications.urls', namespace='communications') )
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
     <h3>{{ledger.name}}
-        { Account edit }
         <span>
             <a href="{% url 'ledger:edit-account' ledger.pk %}">Edit</a>
         </span>
