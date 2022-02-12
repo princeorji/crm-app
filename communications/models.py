@@ -1,5 +1,3 @@
-from enum import unique
-import uuid
 from django.db import models
 from django.contrib.auth import get_user_model
 from shortuuidfield import ShortUUIDField

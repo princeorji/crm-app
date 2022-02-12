@@ -21,7 +21,7 @@ def create_client(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('core:index'))
-    return render(request, 'core/create_client.html', {'form': form})
+    return render(request, 'create_client.html', {'form': form})
 
 @login_required(login_url='account_login')
 def update_client(request, pk):
@@ -33,7 +33,7 @@ def update_client(request, pk):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('core:index'))
-    return render(request, 'core/update_client.html', {'form': form})
+    return render(request, 'update_client.html', {'form': form})
 
 @login_required(login_url='account_login')
 def delete_client(request, pk):
@@ -42,6 +42,6 @@ def delete_client(request, pk):
     if request.method == 'POST':
         client.delete()
         return HttpResponseRedirect(reverse('core:index'))
-    return render(request, 'core/delete_client.html', {'obj': client})
+    return render(request, 'delete_client.html', {'obj': client})
 
 

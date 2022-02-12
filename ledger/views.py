@@ -26,7 +26,7 @@ def account_list(request):
         'page_obj': page_obj,
         'account_search': account_search
     }
-    return render(request, 'ledger/account_list.html', context)
+    return render(request, 'account_list.html', context)
 
 @login_required(login_url='account_login')
 def account_detail(request, pk):
@@ -36,7 +36,7 @@ def account_detail(request, pk):
         'ledger': ledger,
         'contacts': contacts
     }
-    return render(request, 'ledger/account_detail.html', context)
+    return render(request, 'account_detail.html', context)
 
 @login_required(login_url='account_login')
 def add_account(request):
@@ -47,7 +47,7 @@ def add_account(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('ledger:account_list'))
-    return render(request, 'ledger/account_cru.html', {'form': form})
+    return render(request, 'account_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
 def edit_account(request, pk):
@@ -59,5 +59,5 @@ def edit_account(request, pk):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('ledger:account_list'))
-    return render(request, 'ledger/account_cru.html', {'form': form})
+    return render(request, 'account_cru.html', {'form': form})
    

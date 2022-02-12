@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}Communication Detail{% endblock %}
+{% block content %}
+    <div>
+        <ul>
+            {% include 'comm_item_view.html' %}
+        </ul> 
+    </div>
+{% endblock %}

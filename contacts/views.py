@@ -1,16 +1,19 @@
 from django.urls import reverse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 from .models import Contact
 from .forms import ContactForm
 
 # Create your views here.
 
+@login_required(login_url='account_login')
 def contact_detail(request, pk):
     contact = Contact.objects.get(pk=pk)
-    return render(request, 'contacts/contact_detail.html', {'contact': contact})
+    return render(request, 'contact_detail.html', {'contact': contact})
 
+@login_required(login_url='account_login')
 def add_contact(request):
     form = ContactForm
 
@@ -19,8 +22,9 @@ def add_contact(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('/success/'))
-    return render(request, 'contacts/cru_contact.html', {'form': form})
+    return render(request, 'cru_contact.html', {'form': form})
 
+@login_required(login_url='account_login')
 def edit_contact(request, pk):
     contact = Contact.objects.get(pk=pk)
     form = ContactForm(instance=contact)
@@ -30,12 +34,13 @@ def edit_contact(request, pk):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('/success/'))
-    return render(request, 'contacts/cru_contact.html', {'form': form})
+    return render(request, 'cru_contact.html', {'form': form})
 
+@login_required(login_url='account_login')
 def delete_contact(request, pk):
     contact = Contact.objects.get(pk=pk)
 
     if request.method == 'POST':
         contact.delete()
         return HttpResponseRedirect(reverse('/success/'))
-    return render(request, 'contacts/delete_contact.html', {'obj': contact})
+    return render(request, 'delete_contact.html', {'obj': contact})
