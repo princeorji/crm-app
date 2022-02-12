@@ -1,13 +1,13 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <h2>Delete Client:</h2>
+    <h2>Create Client:</h2>
     <div>
         <form action="" method="post">
             {% csrf_token %}
-            <p>Delete {{obj}}?</p>
+            {{form.as_p}}
             <a href="{{request.META.HTTP_REFERER}}">Back</a>
-            <button type="submit">Delete</button>
+            <button type="submit">Create</button>
         </form>
     </div>
 {% endblock %}

@@ -11,7 +11,7 @@ from .forms import ContactForm
 @login_required(login_url='account_login')
 def contact_detail(request, pk):
     contact = Contact.objects.get(pk=pk)
-    return render(request, 'contact_detail.html', {'contact': contact})
+    return render(request, 'contacts/contact_detail.html', {'contact': contact})
 
 @login_required(login_url='account_login')
 def add_contact(request):
@@ -22,7 +22,7 @@ def add_contact(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('/success/'))
-    return render(request, 'contact_cru.html', {'form': form})
+    return render(request, 'contacts/contact_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
 def edit_contact(request, pk):
@@ -34,7 +34,7 @@ def edit_contact(request, pk):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('/success/'))
-    return render(request, 'contact_cru.html', {'form': form})
+    return render(request, 'contacts/contact_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
 def delete_contact(request, pk):
@@ -43,4 +43,4 @@ def delete_contact(request, pk):
     if request.method == 'POST':
         contact.delete()
         return HttpResponseRedirect(reverse('/success/'))
-    return render(request, 'delete_contact.html', {'obj': contact})
+    return render(request, 'delete_obj.html', {'obj': contact})

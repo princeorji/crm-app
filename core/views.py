@@ -20,8 +20,8 @@ def create_client(request):
         form = ClientForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('core:index'))
-    return render(request, 'client_cru.html', {'form': form})
+            return HttpResponseRedirect(reverse('clients:index'))
+    return render(request, 'clients/client_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
 def update_client(request, pk):
@@ -32,8 +32,8 @@ def update_client(request, pk):
         form = ClientForm(request.POST, instance=client)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('core:index'))
-    return render(request, 'client_cru.html', {'form': form})
+            return HttpResponseRedirect(reverse('clients:index'))
+    return render(request, 'clients/client_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
 def delete_client(request, pk):
@@ -41,7 +41,7 @@ def delete_client(request, pk):
 
     if request.method == 'POST':
         client.delete()
-        return HttpResponseRedirect(reverse('core:index'))
-    return render(request, 'delete_client.html', {'obj': client})
+        return HttpResponseRedirect(reverse('clients:index'))
+    return render(request, 'delete_obj.html', {'obj': client})
 
 

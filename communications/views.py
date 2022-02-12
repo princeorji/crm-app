@@ -11,7 +11,7 @@ from .forms import CummunicationForm
 @login_required(login_url='account_login')
 def comm_detail(request, pk):
     comm = Cummunication.objects.get(pk=pk)
-    return render(request, 'comm_detail.html', {'comm': comm})
+    return render(request, 'communications/comm_detail.html', {'comm': comm})
 
 @login_required(login_url='account_login')
 def add_comm(request):
@@ -22,7 +22,7 @@ def add_comm(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('/success/'))
-    return render(request, 'comm_cru.html', {'form': form})
+    return render(request, 'communications/comm_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
 def edit_comm(request, pk):
@@ -34,4 +34,4 @@ def edit_comm(request, pk):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('/success/'))
-    return render(request, 'comm_cru.html', {'form': form})
+    return render(request, 'communications/comm_cru.html', {'form': form})

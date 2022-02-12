@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}Contact Detail{% endblock %}
@@ -8,7 +8,7 @@
             <h4>Contact Details</h4>
             <table>
                 <tbody>
-                    {% include 'contact_item_view.html' %}
+                    {% include 'contacts/contact_item_view.html' %}
                 </tbody>
             </table> 
         </div>
