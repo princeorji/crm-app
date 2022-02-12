@@ -28,6 +28,9 @@
                 <h4>Communications</h4>
             </div>
             <div>
+                <div>
+                    {% include 'comm_item_form.html' %}
+                </div>
                 <ul>
                     {% for comm in communications %}
                         {% include 'comm_item_view.html' %}

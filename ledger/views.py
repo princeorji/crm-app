@@ -7,8 +7,11 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Ledger
 from .forms import AccountForm
+
 from contacts.models import Contact
 from communications.models import Cummunication
+from communications.forms import CummunicationForm
+
 
 # Create your views here.
 
@@ -35,10 +38,12 @@ def account_detail(request, pk):
     contacts = Contact.objects.filter(ledger=ledger)
     communications = Cummunication.objects.filter(
         ledger=ledger).order_by('-created_on')
+    form = CummunicationForm
     context = {
         'ledger': ledger,
         'contacts': contacts,
         'communications': communications,
+        'form': form,
     }
     return render(request, 'account_detail.html', context)
 

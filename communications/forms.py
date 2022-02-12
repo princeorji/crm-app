@@ -1,7 +1,7 @@
 from django.forms import ModelForm, TextInput
 from .models import Cummunication
 
-class AccountForm(ModelForm):
+class CummunicationForm(ModelForm):
     class Meta:
         model = Cummunication
         fields = '__all__'
