@@ -22,7 +22,7 @@ def add_contact(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('/success/'))
-    return render(request, 'cru_contact.html', {'form': form})
+    return render(request, 'contact_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
 def edit_contact(request, pk):
@@ -34,7 +34,7 @@ def edit_contact(request, pk):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('/success/'))
-    return render(request, 'cru_contact.html', {'form': form})
+    return render(request, 'contact_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
 def delete_contact(request, pk):
