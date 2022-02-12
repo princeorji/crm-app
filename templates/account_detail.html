@@ -23,7 +23,18 @@
                 <a href="{% contact:add-contact %}">New Contact</a>
             </div>
         </div>
-        {# list comm #}
+        <div>
+            <div>
+                <h4>Communications</h4>
+            </div>
+            <div>
+                <ul>
+                    {% for comm in communications %}
+                        {% include 'comm_item_view.html' %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

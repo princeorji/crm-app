@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Ledger
 from .forms import AccountForm
 from contacts.models import Contact
+from communications.models import Cummunication
 
 # Create your views here.
 
@@ -32,9 +33,12 @@ def account_list(request):
 def account_detail(request, pk):
     ledger = Ledger.objects.get(pk=pk)
     contacts = Contact.objects.filter(ledger=ledger)
+    communications = Cummunication.objects.filter(
+        ledger=ledger).order_by('-created_on')
     context = {
         'ledger': ledger,
-        'contacts': contacts
+        'contacts': contacts,
+        'communications': communications,
     }
     return render(request, 'account_detail.html', context)
 
