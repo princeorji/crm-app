@@ -1,6 +1,7 @@
-import os
+import os, django_heroku, dj_database_url
 import environ
 from pathlib import Path
+from decouple import config
 
 env = environ.Env(
     # set casting, default value
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleWare',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -131,6 +133,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
     ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -155,3 +158,5 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_USERNAME_REQUIRED = False
 
 LOGIN_REDIRECT_URL = 'core:index'
+
+django_heroku.settings(locals())

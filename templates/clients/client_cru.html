@@ -3,7 +3,7 @@
 {% block content %}
     <h2>Create Client:</h2>
     <div>
-        <form action="" method="post">
+        <form autocomplete="off" method="post">
             {% csrf_token %}
             {{form.as_p}}
             <a href="{{request.META.HTTP_REFERER}}">Back</a>
