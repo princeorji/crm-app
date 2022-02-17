@@ -1,9 +1,9 @@
 from django.forms import ModelForm
-from .models import Client
+from .models import Customer
 
-class ClientForm(ModelForm):
+class CustomerForm(ModelForm):
     class Meta:
-        model = Client
+        model = Customer
         fields = '__all__'
         exclude = ('user',)
         

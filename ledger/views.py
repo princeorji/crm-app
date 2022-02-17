@@ -12,7 +12,6 @@ from contacts.models import Contact
 from communications.models import Cummunication
 from communications.forms import CummunicationForm
 
-
 # Create your views here.
 
 @login_required(login_url='account_login')

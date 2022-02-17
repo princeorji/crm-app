@@ -3,8 +3,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-from .models import Client
-from .forms import ClientForm
+from .models import Customer
+from .forms import CustomerForm
 
 # Create your views here.
 
@@ -13,35 +13,35 @@ def index(request):
     return render(request, 'index.html')
 
 @login_required(login_url='account_login')
-def create_client(request):
-    form = ClientForm
+def create_customer(request):
+    form = CustomerForm
 
     if request.method == 'POST':
-        form = ClientForm(request.POST)
+        form = CustomerForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('clients:index'))
-    return render(request, 'clients/client_cru.html', {'form': form})
+            return HttpResponseRedirect(reverse('customers:index'))
+    return render(request, 'customers/customer_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
-def update_client(request, pk):
-    client = Client.objects.get(pk=pk)
-    form = ClientForm(instance=client)
+def update_customer(request, pk):
+    customer = Customer.objects.get(pk=pk)
+    form = CustomerForm(instance=customer)
 
     if request.method == 'POST':
-        form = ClientForm(request.POST, instance=client)
+        form = CustomerForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('clients:index'))
-    return render(request, 'clients/client_cru.html', {'form': form})
+            return HttpResponseRedirect(reverse('customers:index'))
+    return render(request, 'customers/customer_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
-def delete_client(request, pk):
-    client = Client.objects.get(pk=pk)
+def delete_customer(request, pk):
+    customer = Customer.objects.get(pk=pk)
 
     if request.method == 'POST':
-        client.delete()
-        return HttpResponseRedirect(reverse('clients:index'))
-    return render(request, 'delete_obj.html', {'obj': client})
+        customer.delete()
+        return HttpResponseRedirect(reverse('customer:index'))
+    return render(request, 'delete_obj.html', {'obj': customer})
 
 
