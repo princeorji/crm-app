@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django.contrib.sites',
-
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -156,6 +156,6 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_USERNAME_REQUIRED = False
 
-LOGIN_REDIRECT_URL = 'core:index'
+LOGIN_REDIRECT_URL = 'customers:index'
 
 django_heroku.settings(locals())
