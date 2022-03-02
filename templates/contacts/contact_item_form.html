@@ -1,13 +1,35 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
-    <h2>Add Contact:</h2>
     <div>
         <form autocomplete="off" method="post">
             {% csrf_token %}
-            {{form.as_p}}
-            <a href="{{request.META.HTTP_REFERER}}">Back</a>
-            <button type="submit">Submit</button>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>{{ form.first_name }}</td>
+                        <td>{{ form.last_name }}</td>
+                        <td>{{ form.role }}</td>
+                        <td>{{ form.phone }}</td>
+                        <td>{{ form.email }}</td>
+                    </tr>
+                    {% if form.errors %}
+                        <tr>
+                            <td>{{ form.first_name.errors }}</td>
+                            <td>{{ form.last_name.errors }}</td>
+                            <td>{{ form.role.errors }}</td>
+                            <td>{{ form.phone.errors }}</td>
+                            <td>{{ form.email.errors }}</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+                <input id="id_ledger" name="ledger"
+                type="hidden"
+                value="{% if request.GET.ledger %}
+                {{ request.GET.ledger }}{% else %}{{ ledger.id }}{% endif %}"/>
+                <a href="{{request.META.HTTP_REFERER}}">Back</a>
+                <button type="submit">Submit</button>
         </form>
     </div>    
 {% endblock %}

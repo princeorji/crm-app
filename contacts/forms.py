@@ -5,7 +5,7 @@ class ContactForm(ModelForm):
     class Meta:
         model = Contact
         fields = '__all__'
-        exclude = ('uuid', 'owner', 'created_on',)
+        exclude = ('uuid', 'owner', 'created_on', 'ledger',)
         widgets = {'phone_number': TextInput(attrs={
             'placeholder': '+234'
             })}

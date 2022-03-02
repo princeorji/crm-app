@@ -2,11 +2,39 @@
 {% load static %}
 {% block content %}
     <div>
-        <form autocomplete="off" method="post">
+        <form autocomplete="off"
+        action="{% if comm.uuid %}
+        {% url 'communications:edit-comm' comm.uuid %}{% else %}{% url 'communications:add-comm'%}{% endif %}"
+        method="post">
             {% csrf_token %}
-            {{form.as_p}}
-            <a href="{{request.META.HTTP_REFERER}}">Back</a>
-            <button type="submit">Submit</button>
+            <p>{{ form.subject }}</p>
+            <div>
+                <p>{{ form.subject.errors }}</p>
+                <p>{{ form.notes }}</p>
+                <p>{{ form.notes.errors }}</p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>{{ form.kind }}</td>
+                            <td>{{ form.date }}</td>
+                            <td>
+                                <button type="submit">Submit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>{{ form.kind.errors }}</td>
+                            <td>{{ form.date.errors }}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <input id="id_ledger" name="ledger"
+            type="hidden"
+            value="{% if request.GET.ledger %}
+            {{ request.GET.ledger }}{% else %}{{ ledger.id }}{% endif %}"/>
+            <input id="id_owner" name="owner" type="hidden" value="{{ user.email }}"/>
         </form>
+        <a href="{{request.META.HTTP_REFERER}}">Back</a>
     </div>    
 {% endblock %}
