@@ -1,14 +1,11 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-    <li>
-        <h5>{{comm.subject}}
-            <span>
-                <a href=""></a>
-                <a href=""></a>
-            </span>
-        </h5>
-        <p>on {{comm.date}}</p>
-        <p>{{comm.notes}}</p>
-    </li>    
-{% endblock %}
+<li>
+    <h5>{{comm.subject}}
+        <span>
+            <a href=""></a>
+            <a href=""></a>
+        </span>
+    </h5>
+    <p>on {{comm.date}}</p>
+    <p>{{comm.notes}}</p>
+</li>    
+

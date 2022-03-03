@@ -149,11 +149,11 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
+django_heroku.settings(locals())
+
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_USERNAME_REQUIRED = False
 
 LOGIN_REDIRECT_URL = 'customers:index'
-
-django_heroku.settings(locals())
