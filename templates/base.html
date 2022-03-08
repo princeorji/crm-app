@@ -9,13 +9,35 @@
   </head>
   <body>
     <div>
-      {% include 'navbar.html' %}
+      <header>
+        <div>
+          <button>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <a href="">CRM</a>
+        </div>
+        <div>
+          <ul>
+            {% if user.is_authenticated %}
+              <li><a href="">Logout</a></li>
+              <li><a href="">Accounts</a></li>
+            {% else %}
+              <li><a href="">Login</a></li>
+              <li><a href="">Sign Up</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </header>
     </div>
     <div>
       {% block content %}
         if you're seeing this, something's wrong        
       {% endblock content %}
     </div>
-    {% include 'footer.html' %}
-</body>
+    <footer>
+      <p>Copyright CRM</p>
+    </footer>
+  </body>
 </html>
