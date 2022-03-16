@@ -52,7 +52,7 @@ def add_account(request):
         form = AccountForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('ledger:account_list')
+            return redirect('ledger:account-list')
     return render(request, 'ledger/account_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
@@ -64,6 +64,6 @@ def edit_account(request, pk):
         form = AccountForm(request.POST, instance=ledger)
         if form.is_valid():
             form.save()
-            return redirect('ledger:account_list')
+            return redirect('ledger:account-list')
     return render(request, 'ledger/account_cru.html', {'form': form})
    

@@ -14,13 +14,12 @@
             <div>
                 <table>
                     <tbody>
-                        <tr></tr>
                         {% for contact in contacts %}
-                            {% include contacts/contact_item_view.html' %}
+                            {% include 'contacts/contact_item_view.html' %}
                         {% endfor %}
                     </tbody>
                 </table>
-                <a href="{% contact:add-contact %}">New Contact</a>
+                <a href="{% url 'contacts:add-contact' %}">New Contact</a>
             </div>
         </div>
         <div>

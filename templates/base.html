@@ -16,16 +16,16 @@
             <span></span>
             <span></span>
           </button>
-          <a href="">CRM</a>
+          <a href="{% url 'customers:index' %}">CRM</a>
         </div>
         <div>
           <ul>
             {% if user.is_authenticated %}
-              <li><a href="">Logout</a></li>
-              <li><a href="">Accounts</a></li>
+              <li><a href="{% url 'account_logout' %}">Logout</a></li>
+              <li><a href="{% url 'ledger:account-list' %}">Accounts</a></li>
             {% else %}
-              <li><a href="">Login</a></li>
-              <li><a href="">Sign Up</a></li>
+              <li><a href="{% url 'account_login' %}">Login</a></li>
+              <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
             {% endif %}
           </ul>
         </div>
