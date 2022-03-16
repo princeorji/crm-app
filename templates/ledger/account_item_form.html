@@ -1,34 +1,13 @@
 <div>
-    <form autocomplete="off"
-    action="{% if account.uuid %}
-    {% url 'ledger:edit-account' %}{% else %}{% url 'ledger:add-account' %}{% endif %}"
-    method="post">
+    <form action="" autocomplete="off" method="post">
         {% csrf_token %}
-        <div>
-            <h3>{{ form.name }}</h3>
-            <span>{{ form.name.errors }}</span>
-        </div>
-        <div>
-            <div>
-                <p>{{ form.description }}</p>
-                <span>{{ form.description.errors }}</span>
-            </div>
-            <div>
-                <p>{{ form.address_one }}</p>
-                <span>{{ form.address_one.errors }}</span>
-                <p>{{ form.address_two }}</p>
-                <span>{{ form.address_one.errors }}</span>
-                <p>{{ form.city}}</p>
-                <span>{{ form.city.errors }}</span>
-                <p>{{ form.state }}</p>
-                <span>{{ form.state.errors }}</span>
-                <p>{{ form.phone_number}}</p>
-                <span>{{ form.phone_number.errors }}</span>
-            </div>
-        </div>
+        {{ form.as_p }}
         <button type="submit">Submit</button>
-        <p>{{ form.non_field_errors }}</p>
         <a href="{{request.META.HTTP_REFERER}}">Back</a>
     </form>
-</div>    
+</div>
+        
+            
+        
+        
 
