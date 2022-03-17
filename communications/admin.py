@@ -3,7 +3,7 @@ from .models import *
 
 # Register your models here.
 
-class ComAdmin(admin.ModelAdmin):
+class CommAdmin(admin.ModelAdmin):
     list_display = ('subject', 'uuid')
 
-admin.site.register(Cummunication, ComAdmin)
+admin.site.register(Communication, CommAdmin)

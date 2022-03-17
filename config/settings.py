@@ -155,5 +155,5 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_USERNAME_REQUIRED = False
 
-LOGIN_REDIRECT_URL = 'customers:index'
-LOGOUT_REDIRECT_URL = 'customers:index'
+LOGIN_REDIRECT_URL = 'marketing:index'
+LOGOUT_REDIRECT_URL = 'marketing:index'

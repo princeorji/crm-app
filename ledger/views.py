@@ -7,8 +7,8 @@ from .models import Ledger
 from .forms import AccountForm
 
 from contacts.models import Contact
-from communications.models import Cummunication
-from communications.forms import CummunicationForm
+from communications.models import Communication
+from communications.forms import CommunicationForm
 
 # Create your views here.
 
@@ -33,9 +33,9 @@ def account_list(request):
 def account_detail(request, uuid):
     ledger = Ledger.objects.get(pk=uuid)
     contacts = Contact.objects.filter(ledger=ledger)
-    communications = Cummunication.objects.filter(
+    communications = Communication.objects.filter(
         ledger=ledger).order_by('-created_on')
-    form = CummunicationForm
+    form = CommunicationForm
     context = {
         'ledger': ledger,
         'contacts': contacts,

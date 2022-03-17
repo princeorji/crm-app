@@ -1,22 +1,22 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 
-from .models import Cummunication
-from .forms import CummunicationForm
+from .models import Communication
+from .forms import CommunicationForm
 
 # Create your views here.
 
 @login_required(login_url='account_login')
 def comm_detail(request, uuid):
-    comm = Cummunication.objects.get(pk=uuid)
+    comm = Communication.objects.get(pk=uuid)
     return render(request, 'communications/comm_detail.html', {'comm': comm})
 
 @login_required(login_url='account_login')
 def add_comm(request):
-    form = CummunicationForm
+    form = CommunicationForm
 
     if request.method == 'POST':
-        form = CummunicationForm(request.POST)
+        form = CommunicationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect()
@@ -24,11 +24,11 @@ def add_comm(request):
 
 @login_required(login_url='account_login')
 def edit_comm(request, uuid):
-    comm = Cummunication.objects.get(pk=uuid)
-    form = CummunicationForm(instance=comm)
+    comm = Communication.objects.get(pk=uuid)
+    form = CommunicationForm(instance=comm)
 
     if request.method == 'POST':
-        form = CummunicationForm(request.POST, instance=comm)
+        form = CommunicationForm(request.POST, instance=comm)
         if form.is_valid():
             form.save()
             return redirect()
@@ -36,7 +36,7 @@ def edit_comm(request, uuid):
 
 @login_required(login_url='account_login')
 def delete_comm(request, uuid):
-    comm = Cummunication.objects.get(pk=uuid)
+    comm = Communication.objects.get(pk=uuid)
 
     if request.method == 'POST':
         comm.delete()

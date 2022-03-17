@@ -8,7 +8,7 @@ from ledger.models import Ledger
 
 User = get_user_model()
 
-class Cummunication(models.Model):
+class Communication(models.Model):
     TYPE = (
         (1, 'Meeting'),
         (2, 'Phone'),
