@@ -1,8 +1,8 @@
 <li>
     <h5>{{comm.subject}}
         <span>
-            <a href=""></a>
-            <a href=""></a>
+            <a href="{% url 'communications:edit-comm' comm.pk %}">Edit</a>
+            <a href="{% url 'communications:delete-comm' comm.pk %}">Delete</a>
         </span>
     </h5>
     <p>on {{comm.date}}</p>

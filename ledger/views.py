@@ -30,8 +30,8 @@ def account_list(request):
     return render(request, 'ledger/account_list.html', context)
 
 @login_required(login_url='account_login')
-def account_detail(request, pk):
-    ledger = Ledger.objects.get(pk=pk)
+def account_detail(request, uuid):
+    ledger = Ledger.objects.get(pk=uuid)
     contacts = Contact.objects.filter(ledger=ledger)
     communications = Cummunication.objects.filter(
         ledger=ledger).order_by('-created_on')
@@ -56,8 +56,8 @@ def add_account(request):
     return render(request, 'ledger/account_cru.html', {'form': form})
 
 @login_required(login_url='account_login')
-def edit_account(request, pk):
-    ledger = Ledger.objects.get(pk=pk)
+def edit_account(request, uuid):
+    ledger = Ledger.objects.get(pk=uuid)
     form = AccountForm(instance=ledger)
 
     if request.method == 'POST':
