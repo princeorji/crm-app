@@ -7,5 +7,5 @@ class AccountForm(ModelForm):
         fields = '__all__'
         exclude = ('uuid', 'owner', 'created_on',)
         widgets = {'phone_number': TextInput(attrs={
-            'placeholder': '+234'
+            'placeholder': 'e.g +234'
             })}

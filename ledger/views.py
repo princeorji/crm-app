@@ -1,7 +1,7 @@
-from django.db.models import Q
 from django.shortcuts import redirect, render
-from django.core.paginator import Paginator
+from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from .models import Ledger
 from .forms import AccountForm
@@ -12,22 +12,21 @@ from communications.forms import CommunicationForm
 
 # Create your views here.
 
-@login_required(login_url='account_login')
-def account_list(request):
-    ledgers = Ledger.objects.all().order_by('created_on')
-    paginator = Paginator(ledgers, 12)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+@method_decorator(login_required, name='dispatch')
+class AccountListView(ListView):
+    paginate_by = 10
+    template_name = 'ledger/account_list.html'
+    context_object_name = 'ledgers'
 
-    q = request.GET.get('q') if request.GET.get('q') != None else ''
-    account_search = ledgers.filter(Q(name__icontains=q))
-
-    context = {
-        'ledgers': ledgers,
-        'page_obj': page_obj,
-        'account_search': account_search
-    }
-    return render(request, 'ledger/account_list.html', context)
+    def get_queryset(self):
+        q = self.request.GET.get('q')
+        if q:
+            account_list = Ledger.objects.filter(
+                name__icontains=q
+            ).order_by('-created_on')
+        else:
+            account_list = Ledger.objects.all().order_by('-created_on')
+        return account_list
 
 @login_required(login_url='account_login')
 def account_detail(request, uuid):

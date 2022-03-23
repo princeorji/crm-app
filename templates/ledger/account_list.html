@@ -1,37 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h3>Account List
-        <span>
-            <a href="{% url 'ledger:add-account' %}">+ Add new Account</a>
-        </span>
-    </h3>
-
-    <form action="{% url 'ledger:account-list' %}" method="get">
-        <input type="text" name="q" placeholder="search...">
-    </form>
-
-    <ul id="display-data">
-        {% for ledger in ledgers %}
-            <li>
-                <a href="{% url 'ledger:account-detail' ledger.pk %}"><h4>{{ledger.name}}</h4></a>
-                <span>created on {{ledger.created_on}}</span>
-            </li>
-        {% endfor %}
-    </ul>
-    <div class="pagination">
-        <span>
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo;first</a>
-                <a href="?page={{page_obj.previous_page_number}}">previous</a>
-            {% endif %}
+    <div>
+        <div>
+            <h3>Account List
+                <span>
+                    <a href="{% url 'ledger:add-account' %}">+ Add new Account</a>
+                </span>
+            </h3>
+            <form action="{% url 'ledger:account-list' %}" method="get">
+                <input type="text" name="q" placeholder="search">
+            </form>    
+        </div>        
+        <ul>
+            {% for ledger in ledgers %}
+                <li>
+                    <a href="{% url 'ledger:account-detail' ledger.pk %}"><h4>{{ledger.name}}</h4></a>
+                    <span>created on {{ledger.created_on}}</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="pagination">
             <span>
-                Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo;first</a>
+                    <a href="?page={{page_obj.previous_page_number}}">previous</a>
+                {% endif %}
+                <span>
+                    Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="?page={{page_obj.next_page_number}}">next</a>
+                    <a href="?page={{page_obj.paginator.num_pages}}">last &laquo;</a>
+                {% endif %}
             </span>
-            {% if page_obj.has_next %}
-                <a href="?page={{page_obj.next_page_number}}">next</a>
-                <a href="?page={{page_obj.paginator.num_pages}}">last &laquo;</a>
-            {% endif %}
-        </span>
+        </div>
     </div>
 {% endblock %}

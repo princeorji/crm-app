@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}    
-    {# Hero Section #}
     <div>
         <div>
             <div>
@@ -14,46 +13,14 @@
                 contact or follow up task again.</p>
             </div>
             <div>
-                {# First Signup Link #}
-                <a href=""
-                class="">Sign Up Now!
-                </a>
+                {% if not user.is_authenticated %}
+                    <a href="{% url 'account_signup' %}"
+                    class="">Sign Up Now!</a>
+                {% else %}
+                    <a href="{% url 'ledger:account-list' %}"
+                    class="">Accounts</a>
+                {% endif %}
             </div>
         </div>
-    </div>
-    {# Main Section #}
-    <div>
-        <h2>Why Buy CRM Easy?</h2>
-        <div>
-            <div>
-                <img src="" alt="">
-                <h5>Save Time</h5>
-                <p>By tracking your customers in
-                an easy to use application you'll
-                be able to find them faster. Don't
-                waste time searching email, looking
-                at business cards, or looking online -
-                just open CRM Easy!</p>
-            </div>
-            <div>
-                <img src="" alt="">
-                <h5>Stay Current</h5>
-                <p>Keeping track of customer details
-                is a critical part of serving the customer
-                right. Make sure you know what they want and when
-                they want it. Use CRM Easy to track all customer
-                communications.</p>
-            </div>
-            <div>
-                <img src="" alt="">
-                <h5>Win Business</h5>
-                <p>By tracking customers and staying up
-                to date on their requirements you'll be
-                in a better position to sell your products
-                or services. You win and so does the customer.</p>
-            </div>
-        </div>
-        {# Second Signup Link #}
-        <a href="">SIGN UP</a>
     </div>
 {% endblock %}
