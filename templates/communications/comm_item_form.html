@@ -3,6 +3,5 @@
         {% csrf_token %}
         {{ form.as_table }}
         <button type="submit">Submit</button>
-        <a href="{{request.META.HTTP_REFERER}}">Back</a>
     </form>
 </div>

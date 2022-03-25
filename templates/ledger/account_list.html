@@ -12,14 +12,14 @@
                 <input type="text" name="q" placeholder="search">
             </form>    
         </div>        
-        <ul>
-            {% for ledger in ledgers %}
+        {% for ledger in ledgers %}
+            <ul>
                 <li>
                     <a href="{% url 'ledger:account-detail' ledger.pk %}"><h4>{{ledger.name}}</h4></a>
                     <span>created on {{ledger.created_on}}</span>
                 </li>
-            {% endfor %}
-        </ul>
+            </ul>
+        {% endfor %}
         <div class="pagination">
             <span>
                 {% if page_obj.has_previous %}

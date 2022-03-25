@@ -31,13 +31,11 @@
                 <div>
                     {% include 'communications/comm_item_form.html' %}
                 </div>
-                <ul>
-                    {% for comm in communications %}
-                        {% include 'communications/comm_item_view.html' %}
-                    {% endfor %}
-                </ul>
+                {% for comm in communications %}
+                    {% include 'communications/comm_item_view.html' %}
+                {% endfor %}
             </div>
         </div>
-        <a href="{% url 'marketing:index' %}">Back</a>
+        <a href="{{request.META.HTTP_REFERER}}">Back</a>
     </div>
 {% endblock %}
